@@ -5,4 +5,10 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.eslint.json',
   },
+  rules: {
+    '@typescript-eslint/no-empty-function': [
+      'error',
+      { allow: ['private-constructors'] },
+    ],
+  },
 };
