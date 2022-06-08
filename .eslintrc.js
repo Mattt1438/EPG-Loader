@@ -10,7 +10,13 @@ module.exports = {
       'error',
       { allow: ['private-constructors'] },
     ], 
+    
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': ['off'],
+
+    'import/order': ['error'],
+
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }]
   },
 };

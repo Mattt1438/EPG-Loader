@@ -1,8 +1,8 @@
-import * as superagent from 'superagent';
-import { IEpg } from '../common';
-import { config } from '../configuration';
 import { createWriteStream, promises as fsPromises } from 'fs';
-import { XMLParser } from 'fast-xml-parser';
+import * as superagent from 'superagent';
+import { config } from '../configuration';
+import { IEpg } from './definitions';
+import { parser } from './parser';
 
 export const client = {
   fetch: async (): Promise<IEpg> => {
@@ -18,7 +18,7 @@ export const client = {
         .pipe(createWriteStream(fileName))
         .on('close', () => {
           fsPromises.readFile(fileName).then((content) => {
-            resolve(new XMLParser({ ignoreAttributes: false }).parse(content));
+            resolve(parser.parse(content));
           });
         });
     });

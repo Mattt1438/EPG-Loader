@@ -1,6 +1,6 @@
-import { config } from './configuration';
 import { promises as fsPromises } from 'fs';
-import { client } from './epg';
+import { config } from './configuration';
+import { process } from './epg';
 
 const createAppDirectories = (): Promise<void> => {
   const createDir = (dir: string): Promise<void> =>
@@ -18,7 +18,5 @@ const createAppDirectories = (): Promise<void> => {
 
 (async () => {
   await createAppDirectories();
-  const response = await client.fetch();
-
-  console.debug(response);
+  await process();
 })();
