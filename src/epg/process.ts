@@ -6,6 +6,4 @@ export const process = async (): Promise<void> => {
 
   await storage.save(newEpg);
 
-  const read = await storage.read();
-  console.log(read);
 };

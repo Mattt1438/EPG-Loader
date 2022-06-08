@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: 'airbnb-typescript/base',
-  plugins: ['import', 'prettier'],
+  plugins: ['import', 'prettier', 'simple-import-sort'],
   parserOptions: {
     project: './tsconfig.eslint.json',
   },
@@ -14,9 +14,13 @@ module.exports = {
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': ['off'],
 
-    'import/order': ['error'],
-
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }]
+    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+
+    'simple-import-sort/imports': 'error',
+    
+    'import/order': ['error'],
+    
+    'no-console': ['error'],
   },
 };

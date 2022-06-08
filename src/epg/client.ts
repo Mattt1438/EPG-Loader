@@ -1,5 +1,6 @@
 import { createWriteStream, promises as fsPromises } from 'fs';
 import * as superagent from 'superagent';
+
 import { config } from '../configuration';
 import { IEpg } from './definitions';
 import { parser } from './parser';

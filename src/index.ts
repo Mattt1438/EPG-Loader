@@ -1,11 +1,13 @@
 import { promises as fsPromises } from 'fs';
+
 import { config } from './configuration';
 import { process } from './epg';
+import { logger } from './logger';
 
 const createAppDirectories = (): Promise<void> => {
   const createDir = (dir: string): Promise<void> =>
     fsPromises.mkdir(dir, { recursive: true }).then(() => {
-      console.log(`Directory created: ${dir}`);
+      logger.debug(`Directory created: ${dir}`);
     });
 
   const listDirectories = (value: object | string = config.directories): string[] => {

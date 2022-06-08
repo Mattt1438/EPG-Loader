@@ -1,8 +1,12 @@
 directories:
+  logs: ./logs
   epg:
     datas: ./epg/datas
     temp: ./epg/temp
-    
+
+logger:
+  level: info
+  
 api:
   host:
   port:

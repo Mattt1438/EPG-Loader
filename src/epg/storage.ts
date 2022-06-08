@@ -1,4 +1,5 @@
 import { promises as fsPromises } from 'fs';
+
 import { config } from '../configuration';
 import { IEpg } from './definitions';
 import { parser } from './parser';

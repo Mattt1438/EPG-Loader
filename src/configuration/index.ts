@@ -1,24 +1,27 @@
 import nodeConfig from 'config';
 
-const readConfigKey = <T>(key: string): T | undefined => {
+const readConfigKey = <T = string>(key: string): T | never => {
   if (!nodeConfig.has(key)) {
-    console.error(`Config key "${key}" is missing`);
-    return undefined;
+    throw new Error(`Config key "${key}" is missing`);
   }
   return nodeConfig.get(key);
 };
 
 export const config = {
   directories: {
+    logs: readConfigKey('directories.logs'),
     epg: {
-      datas: readConfigKey<string>('directories.epg.datas'),
-      temp: readConfigKey<string>('directories.epg.temp'),
+      datas: readConfigKey('directories.epg.datas'),
+      temp: readConfigKey('directories.epg.temp'),
     },
   },
+  logger: {
+    level: readConfigKey('logger.level')
+  },
   api: {
-    host: readConfigKey<string>('api.host'),
-    port: readConfigKey<string>('api.port'),
-    username: readConfigKey<string>('api.username'),
-    password: readConfigKey<string>('api.password'),
+    host: readConfigKey('api.host'),
+    port: readConfigKey('api.port'),
+    username: readConfigKey('api.username'),
+    password: readConfigKey('api.password'),
   },
 };
