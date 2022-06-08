@@ -9,6 +9,12 @@ const readConfigKey = <T>(key: string): T | undefined => {
 };
 
 export const config = {
+  directories: {
+    epg: {
+      datas: readConfigKey<string>('directories.epg.datas'),
+      temp: readConfigKey<string>('directories.epg.temp'),
+    },
+  },
   api: {
     host: readConfigKey<string>('api.host'),
     port: readConfigKey<string>('api.port'),

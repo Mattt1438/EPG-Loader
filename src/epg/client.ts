@@ -4,16 +4,12 @@ import { config } from '../configuration';
 import { createWriteStream, promises as fsPromises } from 'fs';
 import { XMLParser } from 'fast-xml-parser';
 
-const RESPONSE_DIRECTORY = './temp';
-
 export const client = {
   fetch: async (): Promise<IEpg> => {
     const { host, port, username, password } = config.api;
 
     return new Promise<IEpg>(async (resolve) => {
-      const fileName = await fsPromises
-        .mkdir(RESPONSE_DIRECTORY, { recursive: true })
-        .then(() => `${RESPONSE_DIRECTORY}/response_${Date.now()}.xml`);
+      const fileName = `${config.directories.epg.temp}/response_${Date.now()}.xml`;
 
       superagent
         .get(`${host}:${port}/xmltv.php`)

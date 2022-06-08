@@ -9,6 +9,8 @@ module.exports = {
     '@typescript-eslint/no-empty-function': [
       'error',
       { allow: ['private-constructors'] },
-    ],
+    ], 
+    'comma-dangle': 'off',
+    '@typescript-eslint/comma-dangle': ['off'],
   },
 };
