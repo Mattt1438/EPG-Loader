@@ -12,3 +12,6 @@ api:
   port:
   username:
   password: 
+
+scheduler: 60 # Interval between each processes in minutes
+  

@@ -16,7 +16,7 @@ export const config = {
     },
   },
   logger: {
-    level: readConfigKey('logger.level')
+    level: readConfigKey('logger.level'),
   },
   api: {
     host: readConfigKey('api.host'),
@@ -24,4 +24,5 @@ export const config = {
     username: readConfigKey('api.username'),
     password: readConfigKey('api.password'),
   },
+  scheduler: readConfigKey<number>('scheduler'),
 };
