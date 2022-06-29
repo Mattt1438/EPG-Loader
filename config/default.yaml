@@ -14,4 +14,5 @@ api:
   password: 
 
 scheduler: 60 # Interval between each processes in minutes
-  
+
+daysToKeep: 15

@@ -25,4 +25,5 @@ export const config = {
     password: readConfigKey('api.password'),
   },
   scheduler: readConfigKey<number>('scheduler'),
+  daysToKeep: readConfigKey<number>('daysToKeep'),
 };

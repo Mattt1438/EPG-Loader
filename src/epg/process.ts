@@ -1,18 +1,19 @@
 import { config } from '../configuration';
 import { logger } from '../logger';
 import { client } from './client';
+import { combiner } from './combiner';
 import { storage } from './storage';
 
 export const process = async (): Promise<void> => {
-  try {
-    logger.info('Process execution');
-    const newEpg = await client.fetch();
+  logger.info('Process execution');
 
-    await storage.save(newEpg);
-    logger.info('Process end');
-  } catch (err: unknown) {
-    logger.error('Error during the process', err);
-  } finally {
-    setTimeout(process, config.scheduler * 60 * 1000);
-  }
+  await Promise.all([storage.read(), client.fetch()])
+    .then(([existingEpg, newEpg]) => combiner.merge(existingEpg, newEpg).then(storage.save))
+    .catch((err) => {
+      logger.error('Error during the process', err);
+    })
+    .finally(() => {
+      logger.info('Process end');
+      setTimeout(process, config.scheduler * 60 * 1000);
+    });
 };
