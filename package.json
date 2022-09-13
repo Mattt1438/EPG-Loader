@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mattt1438/fileSorter.git"
+    "url": "https://github.com/Mattt1438/EPG-Loader.git"
   },
   "author": "Mattt1438",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Mattt1438/fileSorter/issues"
+    "url": "https://github.com/Mattt1438/EPG-Loader/issues"
   },
   "lint-staged": {
     "*.ts": [
