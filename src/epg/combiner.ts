@@ -5,19 +5,12 @@ import { IEpg, ITvProgram } from './definitions';
 export const combiner = {
   merge: async (existingEpg: IEpg, newEpg: IEpg): Promise<IEpg> => {
     const parseDate = (d: string): number => {
-      if (d.length !== 20) {
+      const date = new Date(d.replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\s([+]\d{4})/g, '$1-$2-$3T$4:$5:$6$7'));
+      if (!date || isNaN(date.valueOf())) {
         logger.error('Invalid date format', d);
         return -Infinity;
       }
-      // TODO regex!!!!
-      const year = d.substring(0, 4);
-      const month = d.substring(4, 6);
-      const day = d.substring(6, 8);
-      const hour = d.substring(8, 10);
-      const minute = d.substring(10, 12);
-      const second = d.substring(12, 14);
-      const timezone = d.substring(15, 20);
-      return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}${timezone}`).getTime();
+      return date.getTime();
     };
 
     const offsetDate = new Date().setDate(new Date().getDate() - config.daysToKeep);
