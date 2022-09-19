@@ -1,5 +1,5 @@
 {
-  "name": "filesorter",
+  "name": "EPG-Loader",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
       "eslint --fix"
     ]
   },
-  "homepage": "https://github.com/Mattt1438/fileSorter#readme",
+  "homepage": "https://github.com/Mattt1438/EPG-Loader#readme",
   "devDependencies": {
     "@commitlint/cli": "16.2.1",
     "@commitlint/config-conventional": "16.2.1",
