@@ -23,6 +23,7 @@ export const config = {
     port: readConfigKey('api.port'),
     username: readConfigKey('api.username'),
     password: readConfigKey('api.password'),
+    userAgent: readConfigKey('api.userAgent'),
   },
   scheduler: readConfigKey<number>('scheduler'),
   daysToKeep: readConfigKey<number>('daysToKeep'),

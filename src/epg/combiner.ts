@@ -9,6 +9,7 @@ export const combiner = {
         logger.error('Invalid date format', d);
         return -Infinity;
       }
+      // TODO regex!!!!
       const year = d.substring(0, 4);
       const month = d.substring(4, 6);
       const day = d.substring(6, 8);

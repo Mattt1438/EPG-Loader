@@ -12,6 +12,7 @@ api:
   port:
   username:
   password: 
+  userAgent: EPG-Loader
 
 scheduler: 60 # Interval between each processes in minutes
 

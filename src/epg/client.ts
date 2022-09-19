@@ -1,4 +1,3 @@
-import { createWriteStream, promises as fsPromises } from 'fs';
 import * as superagent from 'superagent';
 
 import { config } from '../configuration';
@@ -8,27 +7,29 @@ import { parser } from './parser';
 
 export const client = {
   fetch: async (): Promise<IEpg> => {
-    const { host, port, username, password } = config.api;
+    const { host, port, username, password, userAgent } = config.api;
 
     return new Promise<IEpg>(async (resolve, reject) => {
-      const fileName = `${config.directories.epg.temp}/response_${Date.now()}.xml`;
 
       superagent
         .get(`${host}:${port}/xmltv.php`)
+        .set('User-Agent', userAgent)
         .responseType('application/xml')
         .query({ username, password })
-        .pipe(createWriteStream(fileName))
-        .on('close', () => {
-          fsPromises.readFile(fileName).then((content) => {
-            try {
-              const datas = parser.parse(content);
-              resolve(datas);
-            } catch (err) {
-              logger.error('Error while parsing http response', err);
-              reject(err);
-            }
-          });
+        .end((err, res) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          try {
+            const datas = parser.parse(res.body);
+            resolve(datas);
+          } catch (error) {
+            logger.error('Error while parsing http response', error);
+            reject(error);
+          }
         });
+
     });
   },
 };
